@@ -1,10 +1,11 @@
 <div class="foods">
   <div class="food-card" *ngFor="let food of foods">
-    <img
-      [src]="food.imageUrl"
-      alt="{{ food.name }}"
-      class="food-image"
-    />
+   <img
+  [src]="food.imageUrl || 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe'"
+  alt="{{ food.name }}"
+  class="food-image"
+/>
+
 
     <h3 class="food-name">{{ food.name }}</h3>
 

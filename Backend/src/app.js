@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const authRoutes = require('./routes/auth.routes');
 const foodRoutes = require('./routes/food.routes');
@@ -15,6 +16,9 @@ app.use(cors({
   origin: process.env.CORS_ORIGIN,
   credentials: true
 }));
+
+// ⭐ SERVIR IMÁGENES
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 

@@ -18,8 +18,21 @@ button{
 
 body {
   margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f6f1eb;
 }
+
 
 a{
   text-decoration: none;
 }
+
+.food-card {
+  background: #fffdfa; 
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  border: 1px solid #f0e6dc;
+}
+
