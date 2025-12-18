@@ -1,8 +1,11 @@
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { FoodService } from '../../../services/food.service';
+import { CartService } from '../../../services/cart.service';
+
 import { Food } from '../../../shared/models/food';
 
 @Component({
@@ -16,7 +19,10 @@ export class Home {
 
   foods: Food[] = [];
 
-  constructor(private foodService: FoodService) {
+  constructor(
+    private foodService: FoodService,
+    private cartService: CartService
+  ) {
     this.loadFoods();
   }
 
@@ -25,5 +31,9 @@ export class Home {
       next: foods => this.foods = foods,
       error: err => console.error('Error cargando foods', err)
     });
+  }
+
+  addToCart(food: Food): void {
+    this.cartService.add(food);
   }
 }

@@ -1,10 +1,16 @@
 <div class="foods">
   <div class="food-card" *ngFor="let food of foods">
- <img
+<img
   class="food-image"
-  [src]="'http://localhost:3000' + food.image"
+  [src]="food.image
+    ? (food.image.startsWith('http')
+        ? food.image
+        : 'http://localhost:3000' + food.image)
+    : 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe'"
   [alt]="food.name"
 />
+
+
 
 
 
@@ -13,5 +19,11 @@
     <p class="food-price">{{ food.price }} €</p>
 
     <p class="food-stars">⭐ {{ food.stars }}</p>
+    
+<button class="add-btn" (click)="addToCart(food)">
+  🛒 Añadir al carrito
+</button>
+
+
   </div>
 </div>
