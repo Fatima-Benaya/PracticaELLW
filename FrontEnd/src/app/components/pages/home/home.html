@@ -1,29 +1,38 @@
 <div class="foods">
-  <div class="food-card" *ngFor="let food of foods">
-<img
-  class="food-image"
-  [src]="food.image
-    ? (food.image.startsWith('http')
-        ? food.image
-        : 'http://localhost:3000' + food.image)
-    : 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe'"
-  [alt]="food.name"
-/>
+ <div
+  class="food-card"
+  *ngFor="let food of foods"
+  [routerLink]="['/food', food._id]"
+>
 
 
+    <!-- ZONA CLICABLE -->
+    <a
+      class="food-link"
+      [routerLink]="['/food', food._id]"
+    >
+      <img
+        class="food-image"
+        [src]="food.image
+          ? (food.image.startsWith('http')
+              ? food.image
+              : 'http://localhost:3000' + food.image)
+          : 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe'"
+        [alt]="food.name"
+      />
 
+      <h3 class="food-name">{{ food.name }}</h3>
+      <p class="food-price">{{ food.price }} €</p>
+      <p class="food-stars">⭐ {{ food.stars }}</p>
+    </a>
 
-
-    <h3 class="food-name">{{ food.name }}</h3>
-
-    <p class="food-price">{{ food.price }} €</p>
-
-    <p class="food-stars">⭐ {{ food.stars }}</p>
-    
-<button class="add-btn" (click)="addToCart(food)">
-  🛒 Añadir al carrito
-</button>
-
+    <!-- BOTÓN SEPARADO -->
+    <button
+      class="add-btn"
+      (click)="addToCart(food); $event.stopPropagation()"
+    >
+      🛒 Añadir al carrito
+    </button>
 
   </div>
 </div>

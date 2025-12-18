@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 
 @Component({
@@ -12,12 +12,9 @@ import { CartService } from '../../../services/cart.service';
 })
 export class Header {
 
-  cartCount = 0;
+  constructor(private cartService: CartService) {}
 
-  constructor(private cartService: CartService) {
-    // Nos suscribimos a los cambios del carrito
-    this.cartService.items$.subscribe(items => {
-      this.cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
-    });
+  get cartCount(): number {
+    return this.cartService.getTotalCount();
   }
 }

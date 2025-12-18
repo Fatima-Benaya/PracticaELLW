@@ -1,49 +1,44 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { CartItem } from '../shared/models/cart-item';
 import { Food } from '../shared/models/food';
 
-export interface CartItem {
-  food: Food;
-  quantity: number;
-}
-
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class CartService {
+
   private items: CartItem[] = [];
-  private itemsSubject = new BehaviorSubject<CartItem[]>([]);
-  items$ = this.itemsSubject.asObservable();
 
-  add(food: Food): void {
-    const id = food._id ?? food.name; // fallback por si algún item no trae _id
-    const found = this.items.find(i => (i.food._id ?? i.food.name) === id);
+  add(food: Food) {
+    const item = this.items.find(i => i.food._id === food._id);
 
-    if (found) found.quantity++;
-    else this.items.push({ food, quantity: 1 });
-
-    this.itemsSubject.next([...this.items]);
+    if (item) {
+      item.quantity++;
+    } else {
+      this.items.push({ food, quantity: 1 });
+    }
   }
 
-  removeOne(food: Food): void {
-    const id = food._id ?? food.name;
-    const idx = this.items.findIndex(i => (i.food._id ?? i.food.name) === id);
-    if (idx === -1) return;
-
-    this.items[idx].quantity--;
-    if (this.items[idx].quantity <= 0) this.items.splice(idx, 1);
-
-    this.itemsSubject.next([...this.items]);
+  remove(foodId: string) {
+    this.items = this.items.filter(i => i.food._id !== foodId);
   }
 
-  clear(): void {
-    this.items = [];
-    this.itemsSubject.next([]);
-  }
-
-  getTotalCount(): number {
-    return this.items.reduce((acc, it) => acc + it.quantity, 0);
+  getItems(): CartItem[] {
+    return this.items;
   }
 
   getTotalPrice(): number {
-    return this.items.reduce((acc, it) => acc + it.quantity * (it.food.price ?? 0), 0);
+    return this.items.reduce(
+      (acc, item) => acc + item.food.price * item.quantity,
+      0
+    );
+  }
+
+  // ✅ ESTE ES EL MÉTODO QUE FALTABA
+  getTotalCount(): number {
+    return this.items.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
   }
 }
