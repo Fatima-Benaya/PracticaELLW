@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Food } from '../shared/models/food';
-import { sample_foods } from '../../data';
-
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FoodService {
 
-  constructor() {}
+  private apiUrl = 'http://localhost:3000/api/foods';
 
-  getAll():Food[] {
-    return sample_foods
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<Food[]> {
+    return this.http.get<Food[]>(this.apiUrl);
   }
-
 }
