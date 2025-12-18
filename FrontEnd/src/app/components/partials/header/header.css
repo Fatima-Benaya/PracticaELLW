@@ -25,12 +25,14 @@ a:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+  max-width:1200px;
 }
 
 /* logo */
 a.logo{
   font-weight: 700;
-  font-size: 22px;
+  font-size: 26px;
   padding: 1rem;
   color: #ffd166;
 }
@@ -44,6 +46,7 @@ ul{
 }
 
 ul a{
+  font-size: 20px;
   padding: 1rem 1.2rem;
   display: inline-block;
   border-radius: 10px;

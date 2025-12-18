@@ -1,16 +1,21 @@
-<header class="header">
-  <nav>
-    <a routerLink="/" routerLinkActive="active">Aliments</a>
+<header>
+  <div class="container">
+    <!-- IZQUIERDA -->
+    <a routerLink="/" class="logo">Aliments</a>
 
-    <div class="right">
-      <a routerLink="/login" routerLinkActive="active">Login</a>
+    <!-- DERECHA -->
+    <ul>
+      <li>
+        <a routerLink="/login">Login</a>
+      </li>
 
-      <a routerLink="/cart" routerLinkActive="active" class="cart">
-        🛒 Cart
-        <span class="cart-badge" *ngIf="cartCount > 0">
-          {{ cartCount }}
-        </span>
-      </a>
-    </div>
-  </nav>
+      <li>
+        <a routerLink="/cart">
+          🛒 Cart
+          <span *ngIf="cartCount > 0">{{ cartCount }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </header>
+

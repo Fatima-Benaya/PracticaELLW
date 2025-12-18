@@ -15,4 +15,7 @@ export class FoodService {
   getAll(): Observable<Food[]> {
     return this.http.get<Food[]>(this.apiUrl);
   }
+  getById(id: string) {
+  return this.http.get<Food>(`${this.apiUrl}/${id}`);
+}
 }
