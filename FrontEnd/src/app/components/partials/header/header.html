@@ -1,25 +1,16 @@
-<header>
-  <div class="container">
-    <a routerLink="/" class="logo">Aliments</a>
-    <nav>
-      <ul>
-        <li>
-          <a routerLink="/login">Login</a>
-        </li>
-        <li class="menu-container">
-          <a routerLink="/dashboard">Nom</a>
-          <div class="menu">
-            <a routerLink="/profile">Perfil</a>
-            <a routerLink="/orders">Ordres</a>
-            <a>Logout</a>
-          </div>
-        </li>
-        <li>
-          <a routerLink="/cart-page">
-            Cart <span>3</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<header class="header">
+  <nav>
+    <a routerLink="/" routerLinkActive="active">Aliments</a>
+
+    <div class="right">
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+
+      <a routerLink="/cart" routerLinkActive="active" class="cart">
+        🛒 Cart
+        <span class="cart-badge" *ngIf="cartCount > 0">
+          {{ cartCount }}
+        </span>
+      </a>
+    </div>
+  </nav>
 </header>
