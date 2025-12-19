@@ -13,15 +13,14 @@ import { CartService } from '../../../services/cart.service';
 })
 export class Header {
 
-  constructor(public auth: AuthService,
-    private cartService: CartService
-
-  ) {}
+  // ✅ IMPORTANTE: si lo usas en el template, NO debe ser private
+  constructor(public auth: AuthService, public cartService: CartService) {}
 
   logout() {
     this.auth.logout();
   }
 
+  // ✅ AQUÍ va el getter
   get cartCount(): number {
     return this.cartService.getTotalCount();
   }
