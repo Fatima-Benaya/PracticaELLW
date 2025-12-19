@@ -1,12 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Header } from './components/partials/header/header';
 import { CartService } from './services/cart.service';
-
-import { HttpClientModule } from '@angular/common/http';
-import MealsComponent from './components/meals/meals.component';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +13,7 @@ import MealsComponent from './components/meals/meals.component';
     CommonModule,
     RouterOutlet,
     Header,
-    HttpClientModule,
-    MealsComponent
+    HttpClientModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

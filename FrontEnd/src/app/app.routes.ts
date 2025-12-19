@@ -1,12 +1,17 @@
 import { Routes } from '@angular/router';
-import { Home } from './components/pages/home/home';
+
 import { Landing } from './components/pages/landing/landing';
+import { Home } from './components/pages/home/home'; // si lo sigues usando en otra parte
 import { MealsComponent } from './components/meals/meals.component';
 
 export const routes: Routes = [
+
   { path: '', component: Landing },
-  { path: 'home', component: Home },
-  { path: '', component: MealsComponent },
+
+  // HOME muestra las comidas (MealsComponent)
+  { path: 'home', component: MealsComponent },
+
+
 
   {
     path: 'food/:id',
@@ -26,6 +31,8 @@ export const routes: Routes = [
       import('./components/pages/login/login').then(m => m.Login)
   },
 
+
   { path: '**', redirectTo: '' }
 ];
+
 
