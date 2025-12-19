@@ -96,23 +96,27 @@ export class FoodDetail implements OnInit {
     private cartService: CartService
   ) {}
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
+ ngOnInit(): void {
+  this.route.paramMap.subscribe(params => {
+    const id = params.get('id');
 
-      if (!id) return;
+    if (!id) {
+      console.error('❌ No hay id en la ruta');
+      return;
+    }
 
-      this.foodService.getById(id).subscribe({
-        next: food => {
-          console.log('FOOD RECIBIDO ✅', food);
-          this.food = food;
-        },
-        error: err => {
-          console.error('ERROR cargando food ❌', err);
-        }
-      });
+    this.foodService.getById(id).subscribe({
+      next: food => {
+        console.log('✅ FOOD RECIBIDO', food);
+        this.food = food;
+      },
+      error: err => {
+        console.error('❌ Error cargando food', err);
+      }
     });
-  }
+  });
+}
+
 
   addToCart(): void {
     if (this.food) {

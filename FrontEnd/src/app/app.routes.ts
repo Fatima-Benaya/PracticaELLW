@@ -1,12 +1,17 @@
 import { Routes } from '@angular/router';
 import { Home } from './components/pages/home/home';
-import { FoodDetail } from './components/pages/food-detail/food-detail';
 import { Landing } from './components/pages/landing/landing';
 
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'home', component: Home },
-  { path: 'food/:id', component: FoodDetail },
+
+  {
+    path: 'food/:id',
+    loadComponent: () =>
+      import('./components/pages/food-detail/food-detail')
+        .then(m => m.FoodDetail)
+  },
 
   {
     path: 'cart',
@@ -19,6 +24,6 @@ export const routes: Routes = [
       import('./components/pages/login/login').then(m => m.Login)
   },
 
-  // 🔒 fallback
   { path: '**', redirectTo: '' }
 ];
+
