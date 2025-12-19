@@ -1,0 +1,32 @@
+<div class="search-row">
+  <input [(ngModel)]="query" placeholder="Buscar (ej. chicken, arrabiata)" />
+  <button (click)="search()">Buscar</button>
+  <button (click)="random()">Aleatorio</button>
+</div>
+
+<div *ngIf="loading">Cargando…</div>
+
+<div class="grid" *ngIf="meals.length">
+  <div class="card" *ngFor="let m of meals">
+    <img [src]="m.strMealThumb" alt="{{m.strMeal}}" />
+    <h4>{{m.strMeal}}</h4>
+    <p>{{m.strCategory || '-'}} — {{m.strArea || '-'}}</p>
+    <button (click)="select(m)">Ver</button>
+  </div>
+</div>
+
+<div *ngIf="!meals.length && !loading">
+  <p>No hay resultados. Prueba a buscar algo.</p>
+</div>
+
+<div *ngIf="selected" class="detail">
+  <h3>{{selected.strMeal}}</h3>
+  <img [src]="selected.strMealThumb" style="max-width:320px" />
+  <h4>Ingredientes</h4>
+  <ul>
+    <li *ngFor="let i of getIngredients(selected)">{{i}}</li>
+  </ul>
+  <h4>Instrucciones</h4>
+  <p>{{selected.strInstructions}}</p>
+  <p *ngIf="selected.strYoutube"><a target="_blank" [href]="selected.strYoutube">Video YouTube</a></p>
+</div>

@@ -5,13 +5,18 @@ import { CommonModule } from '@angular/common';
 import { Header } from './components/partials/header/header';
 import { CartService } from './services/cart.service';
 
+import { HttpClientModule } from '@angular/common/http';
+import MealsComponent from './components/meals/meals.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,   // ✅ necesario para *ngIf
+    CommonModule,
     RouterOutlet,
-    Header
+    Header,
+    HttpClientModule,
+    MealsComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -19,6 +24,5 @@ import { CartService } from './services/cart.service';
 export class App {
   protected readonly title = signal('FrontEnd');
 
-  // ✅ ahora existe cartService para el HTML
   constructor(public cartService: CartService) {}
 }

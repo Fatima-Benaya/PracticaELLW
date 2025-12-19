@@ -1,0 +1,6 @@
+.search-row{display:flex;gap:8px;margin-bottom:12px}
+.search-row input{flex:1;padding:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card{border:1px solid #ddd;border-radius:6px;padding:8px;text-align:center}
+.card img{width:100%;height:140px;object-fit:cover;border-radius:4px}
+.detail{margin-top:18px}
