@@ -9,6 +9,10 @@ export class CartService {
 
   private items: CartItem[] = [];
 
+  getItems(): CartItem[] {
+    return this.items;
+  }
+
   add(food: Food) {
     const item = this.items.find(i => i.food._id === food._id);
 
@@ -23,21 +27,20 @@ export class CartService {
     this.items = this.items.filter(i => i.food._id !== foodId);
   }
 
-  getItems(): CartItem[] {
-    return this.items;
+  clear() {
+    this.items = [];
   }
 
   getTotalPrice(): number {
     return this.items.reduce(
-      (acc, item) => acc + item.food.price * item.quantity,
+      (sum, item) => sum + item.food.price * item.quantity,
       0
     );
   }
 
-  // ✅ ESTE ES EL MÉTODO QUE FALTABA
   getTotalCount(): number {
     return this.items.reduce(
-      (acc, item) => acc + item.quantity,
+      (sum, item) => sum + item.quantity,
       0
     );
   }

@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CartService } from '../../../services/cart.service';
+import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  styleUrl: './header.css'
 })
 export class Header {
 
-  constructor(private cartService: CartService) {}
+  constructor(public auth: AuthService) {}
 
-  get cartCount(): number {
-    return this.cartService.getTotalCount();
+  logout() {
+    this.auth.logout();
   }
 }

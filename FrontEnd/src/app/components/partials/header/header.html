@@ -1,21 +1,20 @@
 <header>
   <div class="container">
-    <!-- IZQUIERDA -->
-    <a routerLink="/" class="logo">Aliments</a>
+    <a routerLink="/home" class="logo">🍕 FoodExpress</a>
 
-    <!-- DERECHA -->
+
     <ul>
-      <li>
+      <li *ngIf="!auth.isLogged()">
         <a routerLink="/login">Login</a>
       </li>
 
+      <li *ngIf="auth.isLogged()">
+        <a (click)="logout()">Salir</a>
+      </li>
+
       <li>
-        <a routerLink="/cart">
-          🛒 Cart
-          <span *ngIf="cartCount > 0">{{ cartCount }}</span>
-        </a>
+        <a routerLink="/cart">🛒 Cart</a>
       </li>
     </ul>
   </div>
 </header>
-
