@@ -1,5 +1,4 @@
-
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MealsService } from '../../services/meals.service';
@@ -11,7 +10,7 @@ import { MealsService } from '../../services/meals.service';
   templateUrl: './meals.component.html',
   styleUrls: ['./meals.component.css']
 })
-export class MealsComponent {
+export class MealsComponent implements OnInit {
   query = '';
   meals: any[] = [];
   selected: any = null;
@@ -19,20 +18,41 @@ export class MealsComponent {
 
   constructor(private mealsService: MealsService) {}
 
+  ngOnInit(): void {
+    // 🔥 Al abrir la página, carga varias recetas
+    this.query = 'chicken';
+    this.search();
+  }
+
   search() {
     if (!this.query.trim()) return;
     this.loading = true;
+
     this.mealsService.search(this.query.trim()).subscribe({
-      next: (res) => { this.meals = res.meals || []; this.selected = null; this.loading = false; },
-      error: (err) => { console.error(err); this.loading = false; }
+      next: res => {
+        this.meals = res.meals || [];
+        this.selected = null;
+        this.loading = false;
+      },
+      error: err => {
+        console.error(err);
+        this.loading = false;
+      }
     });
   }
 
   random() {
     this.loading = true;
     this.mealsService.random().subscribe({
-      next: (res) => { this.meals = res.meals || []; this.selected = null; this.loading = false; },
-      error: (err) => { console.error(err); this.loading = false; }
+      next: res => {
+        this.meals = res.meals || [];
+        this.selected = null;
+        this.loading = false;
+      },
+      error: err => {
+        console.error(err);
+        this.loading = false;
+      }
     });
   }
 
@@ -50,4 +70,3 @@ export class MealsComponent {
     return list;
   }
 }
-

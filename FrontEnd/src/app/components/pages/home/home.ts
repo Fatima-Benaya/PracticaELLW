@@ -33,9 +33,23 @@ export class Home {
     });
   }
 
-  addToCart(food: Food): void {
-    this.cartService.add(food);
-  }
+ addToCart(food: Food): void {
+  const safeFood: Food = {
+    _id: food._id,
+    name: food.name,
+    price: food.price,
+    image: food.image,
+    stars: food.stars ?? 0,
+    cookTime: food.cookTime ?? '',
+    favorite: food.favorite ?? false,
+    origins: food.origins ?? [],
+    tags: food.tags ?? [],
+    description: food.description ?? ''
+  };
+
+  this.cartService.add(safeFood);
+}
+
   imageUrl(image: string): string {
   if (!image) {
     return 'assets/no-image.png'; // opcional
