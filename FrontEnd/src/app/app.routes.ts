@@ -13,10 +13,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/pages/cart/cart').then(m => m.Cart)
   },
-
   {
     path: 'login',
     loadComponent: () =>
       import('./components/pages/login/login').then(m => m.Login)
-  }
+  },
+
+  // 🔒 fallback
+  { path: '**', redirectTo: '' }
 ];
