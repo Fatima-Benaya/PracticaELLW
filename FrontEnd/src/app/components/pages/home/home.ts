@@ -36,4 +36,14 @@ export class Home {
   addToCart(food: Food): void {
     this.cartService.add(food);
   }
+  imageUrl(image: string): string {
+  if (!image) {
+    return 'assets/no-image.png'; // opcional
+  }
+
+  return image.startsWith('http')
+    ? image
+    : 'http://localhost:3000' + image;
+}
+
 }

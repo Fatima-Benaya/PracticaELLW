@@ -11,16 +11,22 @@ import { Food } from '../../../shared/models/food';
   template: `
     <ng-container *ngIf="food; else loading">
       <div class="detail">
-        <img [src]="imageUrl(food.image)" alt="{{ food.name }}" />
+        <img
+          [src]="imageUrl(food.image)"
+          [alt]="food.name"
+        />
+
         <h2>{{ food.name }}</h2>
 
         <p class="desc">{{ food.description }}</p>
 
-        <p>⏱ {{ food.cookTime }} min</p>
+        <p>⏱ {{ food.cookTime }}</p>
         <p>⭐ {{ food.stars }}</p>
         <p class="price">{{ food.price }} €</p>
 
-        <button (click)="addToCart()">🛒 Añadir al carrito</button>
+        <button (click)="addToCart()">
+          🛒 Añadir al carrito
+        </button>
       </div>
     </ng-container>
 
@@ -32,9 +38,9 @@ import { Food } from '../../../shared/models/food';
     .detail {
       max-width: 700px;
       margin: 2rem auto;
-      padding: 1.5rem;
       background: white;
-      border-radius: 12px;
+      padding: 2rem;
+      border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,.1);
       text-align: center;
     }
@@ -44,12 +50,13 @@ import { Food } from '../../../shared/models/food';
       max-height: 350px;
       object-fit: cover;
       border-radius: 12px;
+      margin-bottom: 1rem;
     }
 
     .desc {
-      margin: 1rem 0;
       font-size: 1.1rem;
-      color: #555;
+      margin: 1rem 0;
+      color: #444;
     }
 
     .price {
@@ -60,22 +67,22 @@ import { Food } from '../../../shared/models/food';
 
     button {
       background: #ff9800;
+      color: white;
       border: none;
       padding: 0.8rem 1.5rem;
+      border-radius: 10px;
       font-size: 1rem;
-      color: white;
-      border-radius: 8px;
       cursor: pointer;
     }
 
     button:hover {
-      background: #e68900;
+      background: #fb8c00;
     }
 
     .loading {
-      padding: 2rem;
-      font-size: 1.2rem;
       text-align: center;
+      margin-top: 4rem;
+      font-size: 1.2rem;
     }
   `]
 })
@@ -90,18 +97,20 @@ export class FoodDetail implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
 
-    if (!id) return;
+      if (!id) return;
 
-    this.foodService.getById(id).subscribe({
-      next: food => {
-        console.log('FOOD RECIBIDO ✅', food);
-        this.food = food;
-      },
-      error: err => {
-        console.error('❌ Error cargando food', err);
-      }
+      this.foodService.getById(id).subscribe({
+        next: food => {
+          console.log('FOOD RECIBIDO ✅', food);
+          this.food = food;
+        },
+        error: err => {
+          console.error('ERROR cargando food ❌', err);
+        }
+      });
     });
   }
 
