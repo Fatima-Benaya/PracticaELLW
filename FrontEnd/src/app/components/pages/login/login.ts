@@ -68,7 +68,7 @@ export class Login {
 
   private handleSuccess(res: any) {
     this.loading = false;
-    // Si tu backend devuelve token, guárdalo aquí por ejemplo:
+
     if (res && res.token) {
       localStorage.setItem('token', res.token);
     }
@@ -77,7 +77,7 @@ export class Login {
 
   private handleError(err: any) {
     this.loading = false;
-    // Intenta sacar un mensaje útil del error
+
     this.error = err?.error?.message || err?.message || 'Error en el inicio de sesión';
   }
 
@@ -87,7 +87,7 @@ export class Login {
     } else {
       localStorage.removeItem('rememberedEmail');
     }
-    // Redirige a la página principal (ajusta la ruta si es otra)
+
     this.router.navigate(['/']);
   }
 }

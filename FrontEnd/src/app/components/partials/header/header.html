@@ -4,11 +4,11 @@
 
 
     <ul>
-      <li *ngIf="!auth.isLogged()">
+      <li *ngIf="!auth.isLoggedIn()">
         <a routerLink="/login">Login</a>
       </li>
 
-      <li *ngIf="auth.isLogged()">
+      <li *ngIf="auth.isLoggedIn()">
         <a (click)="logout()">Salir</a>
       </li>
 
@@ -17,6 +17,8 @@
     🛒 Cart
     <span *ngIf="cartCount > 0" class="badge">{{ cartCount }}</span>
   </a>
+
+  <a routerLink="/order">Pedir online</a>
 </li>
 
     </ul>

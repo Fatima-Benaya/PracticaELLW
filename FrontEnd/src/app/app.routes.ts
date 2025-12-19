@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { Landing } from './components/pages/landing/landing';
 import { Home } from './components/pages/home/home'; // si lo sigues usando en otra parte
 import { MealsComponent } from './components/meals/meals.component';
+import { Order } from './components/pages/order/order';
 
 export const routes: Routes = [
 
@@ -10,6 +11,7 @@ export const routes: Routes = [
 
   // HOME muestra las comidas (MealsComponent)
   { path: 'home', component: MealsComponent },
+  { path: 'order', component: Order },
 
 
 

@@ -6,6 +6,9 @@ import { Food } from '../shared/models/food';
   providedIn: 'root'
 })
 export class CartService {
+  addToCart(arg0: { id: any; name: any; price: any; quantity: number; }) {
+    throw new Error('Method not implemented.');
+  }
 
   private items: CartItem[] = [];
   private toastMessage='';

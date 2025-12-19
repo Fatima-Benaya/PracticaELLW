@@ -1,0 +1,12 @@
+<h2>Pedir comida online 🍽️</h2>
+
+<div class="grid">
+  <div class="card" *ngFor="let item of menu">
+    <img [src]="item.image" alt="{{ item.name }}">
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.price }} €</p>
+    <button (click)="addToCart(item)">
+      Añadir al carrito
+    </button>
+  </div>
+</div>
