@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../services/cart.service';
+import { Food } from '../../../shared/models/food';
 
 @Component({
   selector: 'app-order',
@@ -27,7 +28,7 @@ export class Order {
       id: 3,
       name: 'Pasta carbonara',
       price: 9.5,
-      image: 'https://images.unsplash.com/photo-1525755662778-989d0524087e'
+      image: 'https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480_1_5x/img/recipe/ras/Assets/0346a29a89ef229b1a0ff9697184f944/Derivates/cb5051204f4a4525c8b013c16418ae2904e737b7.jpg'
     }
   ];
 
