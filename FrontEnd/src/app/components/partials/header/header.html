@@ -13,8 +13,12 @@
       </li>
 
       <li>
-        <a routerLink="/cart">🛒 Cart</a>
-      </li>
+  <a routerLink="/cart">
+    🛒 Cart
+    <span *ngIf="cartCount > 0" class="badge">{{ cartCount }}</span>
+  </a>
+</li>
+
     </ul>
   </div>
 </header>

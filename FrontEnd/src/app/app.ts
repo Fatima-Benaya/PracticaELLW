@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './components/partials/header/header';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,6 @@ import { Header } from './components/partials/header/header';
 })
 export class App {
   protected readonly title = signal('FrontEnd');
-}
 
+  constructor(public cartService: CartService) {}
+}

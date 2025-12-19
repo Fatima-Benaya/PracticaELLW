@@ -8,6 +8,25 @@ import { Food } from '../shared/models/food';
 export class CartService {
 
   private items: CartItem[] = [];
+  private toastMessage='';
+  private toastVisible=false;
+
+  showToast(message: string): void {
+    this.toastMessage = message;
+    this.toastVisible = true;
+
+    setTimeout(() => {
+      this.toastVisible = false;
+    }, 3000);
+  }
+
+  getToastMessage() {
+    return this.toastMessage;
+  }
+
+  isToastVisible() {
+    return this.toastVisible;
+  }
 
   getItems(): CartItem[] {
     return this.items;
@@ -21,6 +40,7 @@ export class CartService {
     } else {
       this.items.push({ food, quantity: 1 });
     }
+    this.showToast(`Producto añadido al carrito.`);
   }
 
   remove(foodId: string) {
@@ -39,9 +59,7 @@ export class CartService {
   }
 
   getTotalCount(): number {
-    return this.items.reduce(
-      (sum, item) => sum + item.quantity,
-      0
-    );
-  }
+  return this.items.reduce((acc, item) => acc + item.quantity, 0);
+}
+
 }

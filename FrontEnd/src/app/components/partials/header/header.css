@@ -93,3 +93,12 @@ a span{
   background: #ff6f3c;
 }
 
+.badge {
+  background: #ff4d4d;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin-left: 0.4rem;
+}
+
