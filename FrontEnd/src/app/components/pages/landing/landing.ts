@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   template: `
     <div class="landing">
       <div class="content">
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
         <h1>¿Qué quieres comer hoy?</h1>
         <p>Descubre nuestros platos y pide en un clic</p>
 
-        
+
       </div>
     </div>
   `,

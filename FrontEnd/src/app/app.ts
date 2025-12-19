@@ -1,12 +1,17 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Header } from './components/partials/header/header';
 import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Header],
+  imports: [
+    CommonModule,  
+    RouterOutlet,
+    Header
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -15,3 +20,4 @@ export class App {
 
   constructor(public cartService: CartService) {}
 }
+

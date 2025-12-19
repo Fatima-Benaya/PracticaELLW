@@ -1,14 +1,13 @@
 export class Food {
-  _id?: string;
+  _id!: string;
   name!: string;
+  description!: string;
   price!: number;
+  cookTime!: string;   
+  favorite!: boolean;
+  origins!: string[];
   stars!: number;
   image!: string;
-
-  description!: string;
-  cookTime!: string;
-
-  tags?: string[];
-  favorite?: boolean;
-  origins?: string[];
+  tags!: string[];
 }
+
